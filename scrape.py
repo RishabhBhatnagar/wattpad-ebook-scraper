@@ -66,6 +66,7 @@ def download_story(story_id):
 
     for part in storyinfo['parts']:
         chapter_title = part['title']
+        chapter_id = part['id']
 
         if part['draft']:
             print('Skipping "{chapter_title}": {chapter_id}, part is draft'.format(chapter_title=chapter_title, chapter_id=chapter_id))
@@ -74,8 +75,6 @@ def download_story(story_id):
         if 'deleted' in part and part['deleted']:
             print('Skipping "{chapter_title}": {chapter_id}, part is deleted'.format(chapter_title=chapter_title, chapter_id=chapter_id))
             continue
-
-        chapter_id = part['id']
 
         # TODO: could intelligently only redownload modified parts
         chapter_modifyDate = dateutil.parser.parse(part['modifyDate'])
